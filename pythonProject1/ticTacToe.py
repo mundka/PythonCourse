@@ -1,5 +1,6 @@
 from time import *
 from random import *
+# Simple tic-tac-toe game with basic calculations
 
 def fraction():
     n = randint(1, 2)
