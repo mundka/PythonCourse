@@ -88,7 +88,17 @@ while win == False and len(computer) > 0:
     if not computer:
         break
 
+
+
 board(list, player)
+while win == True and player == "x":
+    print("You win!!")
+    input("do you want to play again? Y/N")
+    if input == "Y":
+        win = False
+    else:
+        break
+"""
 if win == True and player == "x":
     print("You win!!")
     input("do you want to play again? Y/N")
@@ -102,3 +112,5 @@ elif win:
 else:
     print("No one wins!!")
     input("do you want to play again? Y/N")
+"""
+
