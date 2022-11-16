@@ -1,14 +1,22 @@
 from time import *
 from random import *
 # Simple tic-tac-toe game with basic calculations
+print("### Welcome to Tic-Tac-Toe game ###\n"
+      "Please complete calculations inorder to choose place on the game board\n"
+      "Have fun! :)")
+sleep(2)
+# define random numbers to calculate
+
 
 def fraction():
-    n = randint(1, 2)
+    n = randint(1, 5)
     while n == 0:
         n = randint(1, 2)
     d = randint(2, 5)
     return str(n) + "+" + str(d)
 
+
+# create calculation
 def problem():
     f1 = fraction()
     f2 = fraction()
@@ -19,7 +27,7 @@ def problem():
     answer = eval("(" + f1 + ")" + s + "(" + f2 + ")")
 
     # check answer
-    if abs(answer - un) < 0.000001:
+    if abs(answer - un) < 0.01:
         print("Correct")
         sleep(1)
         return True
@@ -29,15 +37,16 @@ def problem():
         return False
 
 
+# create the board
 def board(lst, player):
-    str = " " + lst[1] + " | " + list[2] + " | " + lst[3] + "   1 2 3"
+    str = " " + lst[1] + " | " + list[2] + " | " + lst[3] + "   1|2|3"
     str += "\n" + "-" * 11 + "\n"
-    str += " " + lst[4] + " | " + list[5] + " | " + lst[6] + "   4 5 6"
+    str += " " + lst[4] + " | " + list[5] + " | " + lst[6] + "   4|5|6"
     str += "\n" + "-" * 11 + "\n"
-    str += " " + lst[7] + " | " + list[8] + " | " + lst[9] + "   7 8 9"
+    str += " " + lst[7] + " | " + list[8] + " | " + lst[9] + "   7|8|9"
     print(str)
 
-
+#checks if game is won or not
 def check(lst):
     for a in range(0, 3):
         if lst[1 + a * 3] != " " and lst[1 + a * 3] == lst[2 + a * 3] == lst[3 + a * 3]:
@@ -54,8 +63,9 @@ computer = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 win = False
 board(list, "x")
 
+
 while win == False and len(computer) > 0:
-    if problem() == True:
+    if problem():
         player = "x"
         spot = int(input("place " + player + " at space: "))
         while spot < 1 or spot > 9 or list[spot] != " ":
@@ -65,7 +75,8 @@ while win == False and len(computer) > 0:
         computer.remove(spot)
         win = check(list)
     sleep(1)
-    if win == False:
+    # computer choise
+    if not win:
         player = "o"
         c = choice(computer)
         computer.remove(c)
@@ -74,13 +85,20 @@ while win == False and len(computer) > 0:
         board(list, player)
         win = check(list)
     print(" ")
-    if computer == []:
+    if not computer:
         break
 
 board(list, player)
 if win == True and player == "x":
     print("You win!!")
-elif win == True:
+    input("do you want to play again? Y/N")
+    if input == "Y":
+        win = False
+
+    # how to write code here that it restarts the game?
+elif win:
     print("Sorry, the computer wins")
+    input("do you want to play again? Y/N")
 else:
     print("No one wins!!")
+    input("do you want to play again? Y/N")
